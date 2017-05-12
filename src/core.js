@@ -535,6 +535,13 @@ IScroll.prototype = {
 
 		time = time === undefined || time === null || time === 'auto' ? Math.max(Math.abs(this.x-pos.left), Math.abs(this.y-pos.top)) : time;
 
+		// set the current page as the page nearest to the element
+
+        if (this.options.snap) {
+            var snap = this._nearestSnap(pos.left, pos.top);
+            this.currentPage = snap;
+        }
+
 		this.scrollTo(pos.left, pos.top, time, easing);
 	},
 
